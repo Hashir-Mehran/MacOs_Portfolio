@@ -11,7 +11,11 @@ const renderLetters = (text, className, baseWeight = 400) => {
     <span
       key={i}
       className={className}
-      style={{ fontVariationSettings: `'wght' ${baseWeight}`, display: 'inline-block', cursor: 'default' }}
+      style={{
+        fontVariationSettings: `'wght' ${baseWeight}, 'ital' 1`,
+        display: "inline-block",
+        cursor: "default",
+      }}
     >
       {char === " " ? "\u00A0" : char}
     </span>
@@ -58,12 +62,16 @@ const Welcome = () => {
   const subRef = useRef(null);
 
   // Customize intensity here:
-  const pHoverIntensity = 20000;   // p tag hover weight
-  const h1HoverIntensity = 20000; // h1 hover weight
+  const pHoverIntensity = 2000; // p tag hover weight
+  const h1HoverIntensity = 2000; // h1 hover weight
 
   useGSAP(() => {
     const cleanupSub = setupLetterHover(subRef.current, 100, pHoverIntensity);
-    const cleanupTitle = setupLetterHover(titleRef.current, 400, h1HoverIntensity);
+    const cleanupTitle = setupLetterHover(
+      titleRef.current,
+      400,
+      h1HoverIntensity
+    );
 
     return () => {
       cleanupSub();
@@ -81,9 +89,10 @@ const Welcome = () => {
         )}
       </p>
 
-      <h1 ref={titleRef} className="mt-7">
-        {renderLetters("Portfolio", "text-9xl italic font-georama", 400)}
-      </h1>
+      <h1 ref={titleRef} className="mt-7 text-9xl font-georama">
+  {renderLetters("portfolio", "font-georama", 400)}
+</h1>
+
 
       <div className="small-screen">
         <p>This Portfolio is designed for desktop/tablet screens only.</p>
